@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/styles.css">
+  <script src="/assets/script.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+    rel="stylesheet">
+
+
+  <title>Senior Project</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+
+
+
+    body {
+      font-family: "Open Sans";
+      background-color: #171717;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #333;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      width: 90%;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+
+
+    .navbar ul {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar li {
+      margin: 0 25px;
+      margin-left: 3%;
+    }
+
+    .navbar li:first-child {
+      margin-right: auto;
+    }
+
+    .navbar li.signup {
+      background-color: #570C0C;
+      border-radius: 8px;
+      padding: 5px 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+    }
+
+    .navbar li.signup a {
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 0%;
+    }
+
+    .navbar li a {
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .login-form {
+      position: relative;
+      border-radius: none;
+      border: none;
+    }
+
+    input.input-field {
+      background: none;
+      border: 3px solid #707070;
+      border-radius: 8px;
+      font-family: 'Open Sans', ;
+      font-weight: 500;
+      font-size: 15px;
+      outline: none;
+      padding: 15px;
+      width: 100%;
+      height: 50px;
+      left: 100%;
+      color: #ffffff;
+    }
+
+    input::placeholder {
+
+      background-color: none;
+      color: #7e7e7e;
+      padding: 0 15px;
+
+    }
+
+    input.input-field:hover {
+      border-color: #929292;
+    }
+
+
+    input.input-field:focus {
+      border-color: #929292;
+    }
+
+
+
+    .login-container {
+
+      border-radius: 5px;
+      box-shadow: none;
+      padding: 20px;
+      width: 600px;
+      height: 700px;
+      position: absolute;
+      left: 27%;
+      top: 25%;
+      transform: translateX(-50%);
+    }
+
+
+    .login-container h2 {
+      margin: 0 0 20px;
+      color: #ffffff;
+      font-size: 30px;
+    }
+
+
+    button.button {
+      background-color: #570C0C;
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      cursor: pointer;
+      display: block;
+      font-size: 16px;
+      font-family: "Open Sans";
+      margin-top: 10px;
+      padding: 10px;
+      text-align: center;
+      width: 100%;
+      height: 50px;
+    }
+
+
+
+    button.secondary-button {
+      background: #707070;
+      border: 3px solid #707070;
+      border-radius: 8px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 13px;
+      outline: none;
+      padding: 15px;
+      width: calc(50% - 5px);
+      height: 50px;
+      display: inline-block;
+      color: #ffffff;
+    }
+
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+
+    }
+
+    .button-container button:last-child {
+      margin-right: 0;
+    }
+
+    div#image-container {
+      margin-left: 40%;
+    }
+
+    button.second_button {
+      background: none;
+      border: 3px solid #707070;
+      border-radius: 8px;
+      font-family: 'Open Sans';
+      font-weight: 500;
+      font-size: 15px;
+      outline: none;
+      padding: 15px;
+      width: 100%;
+      height: 50px;
+      color: #ffffff;
+    }
+
+    button.second_button:hover {
+      border-color: #696969;
+      background-color: #696969;
+      color: #ffffff;
+    }
+
+    input[type="checkbox"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border: 3px solid #707070;
+      border-radius: 6px;
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      cursor: pointer;
+      outline: none;
+    }
+
+    input[type="checkbox"]:checked {
+      background-color: none;
+    }
+
+    input[type="checkbox"]:checked::after {
+      content: '';
+      display: block;
+      position: relative;
+      left: 4px;
+      top: -1px;
+      width: 6px;
+      height: 12px;
+      border: solid #ffffff;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg);
+    }
+
+    label {
+      color: #ffffff;
+      font-size: 15px;
+      font-family: 'Open Sans';
+      cursor: pointer;
+      display: inline;
+      margin-left: 5px;
+    }
+
+    div.button-container button a {
+      text-decoration: none;
+      color: white;
+    }
+
+    div.button-container button a:visited {
+      text-decoration: none;
+      color: white;
+    }
+
+    div.button-container button a:hover {
+      text-decoration: none;
+      color: white;
+    }
+
+    div.button-container button a:focus {
+      text-decoration: none;
+      color: white;
+    }
+
+    div.button-container button a:hover,
+    a:active {
+      text-decoration: none;
+      color: white;
+    }
+
+    div.button-container button.secondary-button {
+      background: none;
+      border: 3px solid #707070;
+      border-radius: 8px;
+      font-family: 'Open Sans';
+      font-weight: 500;
+      font-size: 15px;
+      outline: none;
+      padding: 15px;
+      width: calc(50% - 5px);
+      height: 50px;
+      color: #ffffff;
+    }
+
+    div.button-container button.secondary-button:hover {
+      border-color: #696969;
+      background-color: #696969;
+      color: #ffffff;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .button-container button:last-child {
+      margin-right: 0;
+    }
+
+    div#image-container {
+      margin-left: 40%;
+    }
+
+    div.button-container button a {
+      text-decoration: none;
+      color: white;
+    }
+
+    div.button-container button a:visited {
+      text-decoration: none;
+      color: white;
+    }
+
+    div.button-container button a:hover {
+      text-decoration: none;
+      color: white;
+    }
+
+    div.button-container button a:focus {
+      text-decoration: none;
+      color: white;
+    }
+
+    div.button-container button a:hover,
+    a:active {
+      text-decoration: none;
+      color: white;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="navbar">
+    <ul>
+      <li><a href="#">MSU</a></li>
+      <li><a href="/index.html">Home</a></li>
+      <li class="signup"><a href="/signup">Sign Up</a></li>
+    </ul>
+  </div>
+
+  <div class="login-container">
+    <h2>MSU Sign Up</h2>
+
+
+
+    <form class="login-form" method="post" action="/">
+      <input type="text" class="input-field" placeholder="Full Name" name="fullName" required>
+      <input type="text" class="input-field" placeholder="Email" name="email" id="email" required>
+      <span id="email-error" style="color: red; display: none;">You need to have a Montclair University Email to sign
+        up.</span>
+
+      <input type="text" class="input-field" placeholder="User Name" name="userName" required>
+      <input type="password" class="input-field" placeholder="Password" name="password" required>
+      <input type="checkbox" id="terms-box" name="box" value="terms-checked">
+      <label for="terms-box"> Terms & Conditions</label><br>
+
+      <button type="submit" class="button">Sign Up</button>
+
+    </form>
+
+
+    <div class="button-container">
+      <button class="secondary-button"><a href="/login">Already Have An Account</a></button>
+      <button class="secondary-button"><a href="/GuestSignup">MSU Guest Sign Up</a></button>
+
+    </div>
+
+
+
+  </div>
+
+  <div id="image-container">
+    <img src="/Assests/Bus.png" alt="My Image" width="600">
+  </div>
+
+  <script>
+    function checkEmail() {
+      const emailInput = document.getElementById("email");
+      const emailError = document.getElementById("email-error");
+      const emailValue = emailInput.value;
+
+      if (emailValue.endsWith("@montclair.edu")) {
+        emailError.style.display = "none";
+        emailInput.setCustomValidity("");
+      } else {
+        emailError.style.display = "block";
+        emailInput.setCustomValidity("Invalid email");
+      }
+    }
+
+    document.getElementById("email").addEventListener("input", checkEmail);
+
+
+
+    async function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams(new FormData(form)),
+        });
+
+        if (response.ok) {
+          window.location.href = "/";
+        } else {
+          const errorMessage = await response.text();
+          alert(errorMessage);
+        }
+      } catch (error) {
+        console.error("Error during form submission:", error);
+      }
+    }
+
+  </script>
+
+
+</body>
+
+</html>

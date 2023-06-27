@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+
+
+    <title>Senior Project</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Open Sans";
+            background-color: #171717;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .subscription-container {
+            display: flex;
+            justify-content: center;
+            /* Add this line */
+            align-items: center;
+            height: 100vh;
+            gap: 20px;
+        }
+
+
+
+        .navbar {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            width: 90%;
+            z-index: 1;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            margin: 0 25px;
+            margin-left: 3%;
+        }
+
+        .navbar li:first-child {
+            margin-right: auto;
+        }
+
+        .navbar li.signup {
+            background-color: #570C0C;
+            border-radius: 8px;
+            padding: 5px 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+        }
+
+        .navbar li.signup a {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 0%;
+        }
+
+        .navbar li a {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+
+
+        h2 {
+            margin: 0 0 20px;
+            color: #ffffff;
+            font-size: 30px;
+        }
+
+        .button {
+            background-color: #570C0C;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            cursor: pointer;
+            display: block;
+            font-size: 16px;
+            font-family: "Open Sans";
+            margin-top: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 600px;
+            height: 50px;
+        }
+
+        .scrollable-box {
+            background-color: #232323;
+            border-radius: 11px;
+            height: 700px;
+            width: 600px;
+            padding: 20px;
+
+        }
+
+        .side-route-container {
+            margin-top: 60px;
+
+        }
+
+
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .duration {
+            font-size: 30px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .price {
+            font-size: 25px;
+            font-weight: 500;
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        <ul>
+            <li><a href="#">MSU</a></li>
+            <li><a href="/driver">Home</a></li>
+            <li><a href="/routeEditor">Route</a></li>
+            <li><a href="/plans">Plans</a></li>
+            <li class="signup"><a href="/signup">Log Out</a></li>
+        </ul>
+    </div>
+
+
+
+    <div class="subscription-container">
+        <div class="route-container">
+            <h2>Plans Editor</h2>
+            <div class="scrollable-box"></div>
+            <button class="button">Edit Subscription</button>
+        </div>
+
+
+        <div class="side-route-container">
+            <div class="scrollable-box"></div>
+            <button class="button">Edit Subscription</button>
+        </div>
+
+        <div class="side-route-container">
+            <div class="scrollable-box"></div>
+            <button class="button">Edit Subscription</button>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script>
+        let plans = [];
+
+        async function fetchPlans() {
+            try {
+                const response = await fetch('/api/plans');
+                plans = await response.json();
+        
+                const scrollableBoxes = document.querySelectorAll('.scrollable-box');
+                for (let i = 0; i < scrollableBoxes.length; i++) {
+                    const plan = plans[i];
+                    const box = scrollableBoxes[i];
+                    const button = box.querySelector('.button');
+        
+                    if (plan) {
+                        box.innerHTML = `
+                            <div class="content-wrapper">
+                                <span class="duration">${plan.duration}</span> <br>
+                                <span class="price">$${plan.price}</span>
+                            </div>
+                        `;
+                    } else {
+                        button.textContent = 'Add New Subscription';
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching plans data:', error);
+            }
+        }
+        
+
+
+        // Call the fetchPlans function when the page loads
+        window.addEventListener('DOMContentLoaded', fetchPlans);
+
+        // Add this function to toggle the edit mode
+
+        async function updatePlan(id, duration, price) {
+            try {
+                const response = await fetch(`/api/plans/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ duration, price }),
+                });
+                if (!response.ok) {
+                    throw new Error('Error updating plan');
+                }
+            } catch (error) {
+                console.error('Error updating plan:', error);
+            }
+        }
+
+        function toggleEditMode(box, editMode, planId) {
+            const contentWrapper = box.querySelector('.content-wrapper');
+            const duration = contentWrapper.querySelector('.duration');
+            const price = contentWrapper.querySelector('.price');
+        
+            if (editMode) {
+                duration.outerHTML = `<input class="duration-input" type="text" value="${duration.textContent}" />`;
+                price.outerHTML = `<input class="price-input" type="number" step="0.01" value="${price.textContent.replace('$', '')}" />`;
+        
+                const saveButton = document.createElement('button');
+                saveButton.textContent = 'Save';
+                saveButton.classList.add('button', 'save-button');
+        
+                const cancelButton = document.createElement('button');
+                cancelButton.textContent = 'Cancel';
+                cancelButton.classList.add('button', 'cancel-button');
+        
+                contentWrapper.appendChild(saveButton);
+                contentWrapper.appendChild(cancelButton);
+        
+                // Add event listeners for the newly created 'Save' and 'Cancel' buttons
+                saveButton.addEventListener('click', () => {
+                    toggleEditMode(box, false, planId);
+                });
+        
+                cancelButton.addEventListener('click', () => {
+                    // Restore the original values
+                    const durationInput = contentWrapper.querySelector('.duration-input');
+                    const priceInput = contentWrapper.querySelector('.price-input');
+        
+                    durationInput.outerHTML = `<span class="duration">${duration.textContent}</span>`;
+                    priceInput.outerHTML = `<span class="price">${price.textContent}</span>`;
+        
+                    contentWrapper.querySelector('.save-button').remove();
+                    contentWrapper.querySelector('.cancel-button').remove();
+                });
+        
+            } else {
+                if (planId) { // Add this condition
+                    const durationInput = contentWrapper.querySelector('.duration-input');
+                    const priceInput = contentWrapper.querySelector('.price-input');
+        
+                    updatePlan(planId, durationInput.value, parseFloat(priceInput.value));
+        
+                    durationInput.outerHTML = `<span class="duration">${durationInput.value}</span>`;
+                    priceInput.outerHTML = `<span class="price">$${priceInput.value}</span>`;
+        
+                    contentWrapper.querySelector('.save-button').remove();
+                    contentWrapper.querySelector('.cancel-button').remove();
+                }
+            }
+        }
+        
+
+        async function deletePlan(id) {
+            try {
+                const response = await fetch(`/api/plans/${id}`, {
+                    method: 'DELETE',
+                });
+                if (!response.ok) {
+                    throw new Error('Error deleting plan');
+                }
+                location.reload(); // Refresh the page to update the list of plans
+            } catch (error) {
+                console.error('Error deleting plan:', error);
+            }
+        }
+
+        async function createPlan(duration, price) {
+            try {
+                const response = await fetch('/api/plans', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ duration, price }),
+                });
+                if (!response.ok) {
+                    throw new Error('Error creating plan');
+                }
+                location.reload(); // Refresh the page to update the list of plans
+            } catch (error) {
+                console.error('Error creating plan:', error);
+            }
+        }
+        
+
+        
+        
+
+        document.querySelectorAll('.button').forEach((button, index) => {
+            button.addEventListener('click', () => {
+                const box = document.querySelectorAll('.scrollable-box')[index];
+                const plan = plans[index];
+                if (button.textContent === 'Edit Subscription') {
+                    button.textContent = 'Delete';
+                    toggleEditMode(box, true, plan._id);
+                } else {
+                    deletePlan(plan._id);
+                }
+            });
+        });
+        
+        
+        
+        
+
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

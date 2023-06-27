@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+
+
+    <title>Senior Project</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Open Sans";
+            background-color: #171717;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .navbar {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #333;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            width: 90%;
+            z-index: 1;
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar li {
+            margin: 0 25px;
+            margin-left: 3%;
+        }
+
+        .navbar li:first-child {
+            margin-right: auto;
+        }
+
+        .navbar li.signup {
+            background-color: #570C0C;
+            border-radius: 8px;
+            padding: 5px 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+
+        }
+
+        .navbar li.signup a {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 0%;
+        }
+
+        .navbar li a {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        input.input-field {
+            background: none;
+            border: 3px solid #707070;
+            border-radius: 8px;
+            font-family: 'Open Sans', ;
+            font-weight: 500;
+            font-size: 15px;
+            outline: none;
+            padding: 15px;
+            width: 100%;
+            height: 50px;
+            left: 100%;
+            color: #ffffff;
+        }
+
+        input::placeholder {
+
+            background-color: none;
+            color: #7e7e7e;
+            padding: 0 15px;
+
+        }
+
+        input.input-field:hover {
+            border-color: #929292;
+        }
+
+        input.input-field:focus {
+            border-color: #929292;
+        }
+
+        .route-container {
+            padding: 20px;
+            height: 700px;
+            top: 10%;
+            position: fixed;
+            left: 4%;
+            width: 30%;
+        }
+
+        h2 {
+
+            margin: 0 0 20px;
+            color: #ffffff;
+            font-size: 30px;
+
+        }
+
+        .button {
+            background-color: #570C0C;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            cursor: pointer;
+            display: block;
+            font-size: 16px;
+            font-family: "Open Sans";
+            margin-top: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 600px;
+            height: 50px;
+        }
+
+        .scrollable-box {
+            background-color: #232323;
+            border-radius: 11px;
+            height: 700px;
+            width: 600px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .box {
+            background: none;
+            border: 3px solid #707070;
+            border-radius: 8px;
+            font-family: 'Open Sans', ;
+            font-weight: 500;
+            font-size: 15px;
+            outline: none;
+            padding: 15px;
+            height: 30px;
+            left: 100%;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .box:hover {
+            border-color: #929292;
+        }
+
+        .box:focus {
+            border-color: #929292;
+        }
+
+        .editor-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 94%;
+        }
+
+        .container {
+            display: grid;
+            /* Change this from flex to grid */
+            grid-template-columns: auto auto auto;
+            /* Add this line */
+            justify-content: flex-start;
+            align-items: center;
+            gap: 20px;
+            /* Add this line */
+        }
+
+        .input-container {
+            display: none;
+            background-color: #232323;
+            border-radius: 11px;
+            height: 700px;
+            width: 700px;
+            padding: 20px;
+            overflow-y: auto;
+            position: fixed;
+            left: 45%;
+            margin-top: 80px;
+            top: 10%;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        div input.input-box {
+            background: none;
+            border: 3px solid #707070;
+            border-radius: 8px;
+            font-family: 'Open Sans', ;
+            font-weight: 500;
+            font-size: 15px;
+            outline: none;
+            padding: 15px;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .input-box::placeholder {
+            color: #7e7e7e;
+            padding: 0 15px;
+        }
+
+        .input-box:hover {
+            border-color: #929292;
+        }
+
+        .input-box:focus {
+            border-color: #929292;
+        }
+
+        .input-button {
+            background-color: #570C0C;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            cursor: pointer;
+            display: block;
+            font-size: 16px;
+            font-family: "Open Sans";
+            margin-top: 5px;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            height: 50px;
+            max-width: 800px;
+
+        }
+
+
+        .input-button-container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+
+        }
+
+        .button-wrapper {
+            position: absolute;
+            width: 100%;
+            bottom: 20px;
+            overflow-y: auto;
+        }
+
+
+        .editor-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+        }
+
+        .number-inputs-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            /* Add a gap between input boxes */
+            width: 100%;
+
+
+        }
+
+        .View-route-container {
+            display: none;
+            background-color: #232323;
+            border-radius: 11px;
+            height: 700px;
+            width: 700px;
+            padding: 20px;
+            overflow-y: auto;
+            position: fixed;
+            /* Change from absolute to fixed */
+            left: 45%;
+            /* Keep this line */
+            margin-top: 80px;
+            top: 10%;
+            /* Add this line to adjust the top positioning */
+            width: 50%;
+
+        }
+
+        .route-detail {
+            background: none;
+            border: 3px solid #707070;
+            border-radius: 8px;
+            font-family: 'Open Sans';
+            font-weight: 500;
+            font-size: 15px;
+            outline: none;
+            padding: 15px;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .route-detail:hover {
+            border-color: #929292;
+        }
+
+        .route-detail:focus {
+            border-color: #929292;
+        }
+
+        .entry-detail {
+            background: none;
+            border: 3px solid #707070;
+            border-radius: 8px;
+            font-family: 'Open Sans';
+            font-weight: 500;
+            font-size: 15px;
+            outline: none;
+            padding: 15px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .entry-detail:hover {
+            border-color: #929292;
+        }
+
+        .entry-detail:focus {
+            border-color: #929292;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="navbar">
+        <ul>
+            <li><a href="#">MSU</a></li>
+            <li><a href="/driver">Home</a></li>
+            <li><a href="/routeEditor">Route</a></li>
+            <li><a href="/plans">Plans</a></li>
+            <li class="signup"><a href="/signup">Log Out</a></li>
+        </ul>
+    </div>
+
+
+    <div class="container">
+
+        <div class="route-container">
+            <h2>Routes Editor</h2>
+
+            <div class="scrollable-box">
+
+            </div>
+            <button class="button">Add New Route</button>
+        </div>
+
+
+
+        <div class="input-container" style="display: none;">
+
+
+            <div class="number-inputs-container">
+                <input type="number" class="input-box" placeholder="Enter Pick up lot number" min="1" name="fromLotNum"
+                    required>
+                <input type="number" class="input-box" placeholder="Enter drop off lot number" min="1" name="toLotNum"
+                    required>
+            </div>
+            <input type="text" class="input-box" placeholder="Enter From Coordinates" name="fromLotCo" required>
+            <input type="text" class="input-box" placeholder="Enter To Coordinates" name="toLotCo" required>
+            <div class="checkpoint-inputs">
+                <input type="text" class="input-box" placeholder="Enter a Checkpoint Coordinates" name="checkpoint[]"
+                    required>
+            </div>
+
+            <button class="input-button">Add Another Checkpoint</button>
+
+            <div class="input-button-container">
+                <button type="submit" class="input-button post-route-button">Post Route</button>
+                <button class="input-button">Cancel</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="View-route-container">
+        <button class="input-button">Cancel</button>
+
+    </div>
+
+
+
+
+
+    <script>
+        async function fetchRoutes() {
+            try {
+                const response = await fetch('/routes');
+                if (response.ok) {
+                    const routes = await response.json();
+                    return routes;
+                } else {
+                    console.error('Error fetching routes');
+                    return [];
+                }
+            } catch (error) {
+                console.error('Error fetching routes:', error);
+                return [];
+            }
+        }
+
+        function createRouteButton(route, viewRouteContainer) {
+            const div = document.createElement('div');
+            div.classList.add('box');
+            div.textContent = `From Lot ${route.fromLotNum} to Lot ${route.toLotNum}`;
+            div.addEventListener('click', function () {
+                // Handle the div click event here, e.g., show route details
+                viewRouteContainer.style.display = 'block'; // Show view-route-container
+            });
+            div.addEventListener('click', function () {
+                displayRouteDetails(route);
+                viewRouteContainer.style.display = 'block'; // Show view-route-container
+            });
+            return div;
+        }
+
+        function displayRouteDetails(route) {
+            const viewRouteContainer = document.querySelector('.View-route-container');
+            viewRouteContainer.innerHTML = ''; // Clear existing route details
+
+            const createDetailContainer = (label, content, editable = false) => {
+                const detailContainer = document.createElement('div');
+                detailContainer.classList.add('route-detail');
+
+                const detailLabel = document.createElement('p');
+                detailLabel.textContent = label;
+                detailContainer.appendChild(detailLabel);
+
+                const detailContent = editable ? document.createElement('input') : document.createElement('p');
+                if (editable) {
+                    detailContent.type = 'text';
+                    detailContent.value = content;
+                } else {
+                    detailContent.textContent = content;
+                }
+                detailContainer.appendChild(detailContent);
+
+                return detailContainer;
+            };
+
+            viewRouteContainer.appendChild(createDetailContainer("From Lot Number:", route.fromLotNum));
+            viewRouteContainer.appendChild(createDetailContainer("To Lot Number:", route.toLotNum));
+            viewRouteContainer.appendChild(createDetailContainer("From Coordinates:", route.fromLotCo));
+            viewRouteContainer.appendChild(createDetailContainer("To Coordinates:", route.toLotCo));
+
+            route.checkpoints.forEach((checkpoint, index) => {
+                viewRouteContainer.appendChild(createDetailContainer(`Checkpoint ${index + 1}:`, checkpoint));
+            });
+
+            route.times.forEach((time, index) => {
+                viewRouteContainer.appendChild(createDetailContainer(`Time ${index + 1}:`, time));
+            });
+
+            const modifyButton = document.createElement('button');
+            modifyButton.textContent = 'Modify Route';
+            modifyButton.classList.add('input-button'); // Add the same class as the post route button
+            viewRouteContainer.appendChild(modifyButton);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete Route';
+            deleteButton.classList.add('input-button'); // Add the same class as the cancel button
+            viewRouteContainer.appendChild(deleteButton);
+
+            modifyButton.addEventListener('click', function () {
+                const saveButton = document.createElement('button');
+                saveButton.textContent = 'Save';
+                saveButton.classList.add('input-button');
+
+                viewRouteContainer.appendChild(saveButton);
+                modifyButton.remove();
+
+                const detailContainers = Array.from(document.querySelectorAll('.route-detail'));
+                detailContainers.forEach((detailContainer) => {
+                    const content = detailContainer.lastChild.textContent;
+                    const label = detailContainer.firstChild.textContent;
+                    const newDetailContainer = createDetailContainer(label, content, true);
+                    detailContainer.replaceWith(newDetailContainer);
+                });
+
+                // Add another time button
+                const addAnotherTimeButton = document.createElement('button');
+                addAnotherTimeButton.textContent = 'Add Another Time';
+                addAnotherTimeButton.classList.add('input-button');
+                viewRouteContainer.appendChild(addAnotherTimeButton);
+
+                let timeCount = route.times.length; // Initial time count
+
+                addAnotherTimeButton.addEventListener('click', function () {
+                    if (timeCount < 5) {
+                        const newInput = createDetailContainer(`Time ${timeCount + 1}:`, '', true);
+                        viewRouteContainer.insertBefore(newInput, addAnotherTimeButton);
+                        timeCount++;
+                    } else {
+                        alert('You can add a maximum of 5 times.');
+                    }
+                });
+
+                saveButton.addEventListener('click', async function () {
+                    const checkpointInputs = Array.from(document.querySelectorAll('.route-detail:nth-child(n+5):nth-child(-n+' + (4 + route.checkpoints.length) + ') input'));
+                    const timeInputs = Array.from(document.querySelectorAll('.route-detail:nth-child(n+' + (5 + route.checkpoints.length) + ') input'));
+
+                    const updatedValues = {
+                        fromLotNum: document.querySelector('.route-detail:nth-child(1) input').value,
+                        toLotNum: document.querySelector('.route-detail:nth-child(2) input').value,
+                        fromLotCo: document.querySelector('.route-detail:nth-child(3) input').value,
+                        toLotCo: document.querySelector('.route-detail:nth-child(4) input').value,
+                        checkpoints: checkpointInputs.map(input => input.value).filter(checkpoint => checkpoint !== ''),
+                        times: timeInputs.map(input => input.value).filter(time => time !== '')
+                    };
+
+
+                    try {
+                        const response = await fetch(`/update-route/${route._id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(updatedValues),
+                        });
+
+                        if (response.ok) {
+                            alert('Route successfully updated');
+                            await displayRoutes(viewRouteContainer);
+                            const updatedRoute = await response.json();
+                            displayRouteDetails(updatedRoute);
+                        } else {
+                            alert('Error updating route');
+                        }
+                    } catch (error) {
+                        console.error(error);
+                        alert('Error updating route');
+                    }
+                });
+
+
+            });
+
+            deleteButton.addEventListener('click', async function () {
+                try {
+                    const response = await fetch(`/delete-route/${route._id}`, { method: 'DELETE' });
+                    if (response.ok) {
+                        alert('Route successfully deleted');
+                        await displayRoutes(viewRouteContainer);
+                        viewRouteContainer.style.display = 'none'; // Hide view-route-container
+                    } else {
+                        alert('Error deleting route');
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert('Error deleting route');
+                }
+            });
+        }
+
+        async function displayRoutes(viewRouteContainer) {
+            const routes = await fetchRoutes();
+            const scrollableBox = document.querySelector('.scrollable-box');
+            scrollableBox.innerHTML = ''; // Clear existing buttons
+
+            routes.forEach((route) => {
+                const routeButton = createRouteButton(route, viewRouteContainer);
+                scrollableBox.appendChild(routeButton);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', async function () {
+            const addNewRouteButton = document.querySelector('.button');
+            const addAnotherCheckpointButton = document.querySelector('.input-button');
+            const inputContainer = document.querySelector('.input-container');
+            const cancelButton = document.querySelector('.input-button-container button:last-child');
+            const boxButton = document.querySelector('.button');
+            const postRouteButton = document.querySelector('.post-route-button');
+            const checkpointInputsContainer = document.querySelector('.checkpoint-inputs');
+            const viewRouteContainer = document.querySelector('.View-route-container');
+            const viewRouteCancelButton = viewRouteContainer.querySelector('.input-button');
+            const addAnotherTimeButton = document.createElement('button');
+            addAnotherTimeButton.textContent = 'Add Another Time';
+            addAnotherTimeButton.classList.add('input-button');
+            inputContainer.insertBefore(addAnotherTimeButton, addAnotherCheckpointButton);
+
+            let timeCount = 1; // Initial time count
+
+            addAnotherTimeButton.addEventListener('click', function () {
+                if (timeCount < 5) {
+                    const newInput = document.createElement('input');
+                    newInput.type = 'text';
+                    newInput.classList.add('input-box');
+                    newInput.name = 'time[]';
+                    newInput.placeholder = 'Enter a Pickup Time';
+                    inputContainer.insertBefore(newInput, addAnotherTimeButton);
+                    timeCount++;
+                } else {
+                    alert('You can add a maximum of 5 times.');
+                }
+            });
+
+
+            viewRouteContainer.style.display = 'none';
+
+
+            await displayRoutes(viewRouteContainer);
+
+            let checkpointCount = 1; // Initial checkpoint count
+
+
+
+            viewRouteCancelButton.addEventListener('click', function () {
+                viewRouteContainer.style.display = 'none'; // Hide view-route-container
+            });
+
+            function resetForm() {
+                inputContainer.querySelectorAll('.input-box').forEach(input => {
+                    if (input.placeholder === 'Enter a Checkpoint Coordinates') {
+                        input.remove();
+                    } else {
+                        input.value = '';
+                    }
+                });
+
+                checkpointCount = 1;
+            }
+
+            addNewRouteButton.addEventListener('click', function () {
+                if (inputContainer.style.display === 'none') {
+                    inputContainer.style.display = 'grid';
+                    viewRouteContainer.style.display = 'none'; // Hide view-route-container
+                } else {
+                    inputContainer.style.display = 'none';
+                }
+            });
+
+
+            cancelButton.addEventListener('click', function () {
+                inputContainer.style.display = 'none';
+                resetForm();
+            });
+
+            addAnotherCheckpointButton.addEventListener('click', function () {
+                if (checkpointCount < 5) {
+                    const newInput = document.createElement('input');
+                    newInput.type = 'text';
+                    newInput.classList.add('input-box');
+                    newInput.name = 'checkpoint[]'; // Update this line
+                    newInput.placeholder = 'Enter a Checkpoint Coordinates';
+                    inputContainer.insertBefore(newInput, addAnotherCheckpointButton);
+                    checkpointCount++;
+                } else {
+                    alert('You can add a maximum of 5 checkpoints.');
+                }
+            });
+
+            postRouteButton.addEventListener('click', async function (event) {
+                event.preventDefault();
+
+                const fromLotNum = document.querySelector('input[name="fromLotNum"]').value;
+                const toLotNum = document.querySelector('input[name="toLotNum"]').value;
+                const fromLotCo = document.querySelector('input[name="fromLotCo"]').value;
+                const toLotCo = document.querySelector('input[name="toLotCo"]').value;
+                const checkpointInputs = Array.from(document.querySelectorAll('input[name="checkpoint[]"]'))
+                    .map((input) => {
+                        return input.value;
+                    })
+                    .filter((checkpoint) => checkpoint !== '');
+                const timeInputs = Array.from(document.querySelectorAll('input[name="time[]"]'))
+                    .map((input) => {
+                        return input.value;
+                    })
+                    .filter((time) => time !== '');
+
+
+                const routeData = {
+                    fromLotNum,
+                    toLotNum,
+                    fromLotCo,
+                    toLotCo,
+                    checkpointInputs,
+                    timeInputs,
+                };
+
+                try {
+                    const response = await fetch('/add-route', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(routeData),
+                    });
+
+                    if (response.ok) {
+                        alert('Route successfully added');
+                        inputContainer.style.display = 'none';
+                        resetForm();
+                        await displayRoutes(); // Refresh routes after adding a new route
+                    } else {
+                        alert('Error adding route');
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert('Error adding route');
+                }
+            });
+        });
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>
